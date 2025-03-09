@@ -115,7 +115,7 @@ elif page == "Overall":
         st.plotly_chart(fig)
 
         # Chart
-       overall_trends = df.groupby("Year")[["Student Satisfaction (%)", "Retention Rate (%)"]].sum().reset_index()
+        overall_trends = df.groupby("Year")[["Student Satisfaction (%)", "Retention Rate (%)"]].sum().reset_index()
         fig = px.line(overall_trends, x="Year", y=["Student Satisfaction (%)", "Retention Rate (%)"],
                       markers=True, title="Satisfaction and Retention over Time")
         # Fix Year axis formatting
