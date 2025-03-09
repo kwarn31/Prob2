@@ -35,7 +35,7 @@ if term_filter != 'All':
 cl1, cl2 = st.columns((2))
 with cl1: 
     # Retention Rate 
-    st.title("Retention Rate (%)")
+    st.subheader("Retention Rate (%)")
     retention = filtered_data["Retention Rate (%)"].values[0]
     # Determine color based on satisfaction level
     if retention < 80:
@@ -47,7 +47,7 @@ with cl1:
     st.markdown(f"<h3 style='color:{color};'>● {retention:.1f}%</h3>", unsafe_allow_html=True)
 with cl2: 
     # Student Satisfaction 
-    st.title("Student Satisfaction (%)")
+    st.subheader("Student Satisfaction (%)")
     satisfaction = filtered_data["Student Satisfaction (%)"].values[0]
     # Determine color based on satisfaction level
     if satisfaction < 80:
