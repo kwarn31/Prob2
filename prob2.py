@@ -12,7 +12,7 @@ st.title("University Dashboard")
 # Select Year with Slider
 selected_year = st.slider("Select Year:", int(df["Year"].min()), int(df["Year"].max()), int(df["Year"].min()))
 
-# Sidebar Filter
+# Sidebar Filter for Term (Spring or Fall) 
 st.sidebar.header("Filters")
 term_filter = st.sidebar.selectbox("Select Term", ['All'] + list(df['Term'].unique()))
 if term_filter != 'All':
@@ -30,6 +30,13 @@ if term_filter != 'All':
 filtered_data = df[df["Year"] == selected_year]
 if term_filter != 'All':
     filtered_data = filtered_data[filtered_data['Term'] == term_filter]
+
+# KPIs
+
+# Student Satisfaction 
+st.title("Student Satisfaction (%)")
+satisfaction = filtered_data["Student Satisfaction (%)"].values[0]
+st.metric("Student Satisfaction", f"{satisfaction:.1f} %")
 
 
 # Melt Data for Plotly
