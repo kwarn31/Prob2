@@ -112,6 +112,16 @@ elif page == "Overall":
         overall_trends = df.set_index("Year")[["Applications", "Admitted", "Enrolled"]]
         st.line_chart(overall_trends)
 
+
+    # Convert Year column to integer
+    df["Year"] = df["Year"].astype(int)
+    overall_trends = df.groupby("Year")[["Applications", "Admitted", "Enrolled"]].sum().reset_index()
+    fig = px.line(overall_trends, x="Year", y=["Applications", "Admitted", "Enrolled"],
+                  markers=True, title="Enrollment Trends Over Time")
+    # Fix Year axis formatting
+    fig.update_layout(xaxis=dict(tickmode="linear", tick0=overall_trends["Year"].min(), dtick=1))
+    st.plotly_chart(fig)
+
     # Chart
         st.subheader("Satisfaction and Retention over Time")
         # Convert Year column to integers to avoid decimals
