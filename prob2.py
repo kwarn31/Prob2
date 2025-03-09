@@ -37,15 +37,13 @@ if term_filter != 'All':
 st.title("Student Satisfaction (%)")
 satisfaction = filtered_data["Student Satisfaction (%)"].values[0]
 # Determine color based on satisfaction level
-if satisfaction < 70:
+if satisfaction < 80:
     color = "red"
 elif satisfaction < 85:
     color = "orange"
 else:
     color = "green"
-# Display metric with color
-#st.metric("Student Satisfaction", f"{satisfaction:.1f} %")
-# Apply colored markdown for visualization
+# with color
 st.markdown(f"<h3 style='color:{color};'>● {satisfaction:.1f}%</h3>", unsafe_allow_html=True)
 
 
