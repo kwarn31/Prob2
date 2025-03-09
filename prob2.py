@@ -130,8 +130,8 @@ elif page == "Overall":
         st.plotly_chart(fig)
 
         # Plot 3 
-        overall_trends_3 = unique_years_df.groupby("Year")[["Engineering Enrolled", "Business Enrolled, "Arts Enrolled", "Science Enrolled"]].sum().reset_index()
-        fig = px.line(overall_trends_3, x="Year", y=["Engineering Enrolled", "Business Enrolled, "Arts Enrolled", "Science Enrolled"],
+        overall_trends_3 = unique_years_df.groupby("Year")[["Engineering Enrolled", "Business Enrolled", "Arts Enrolled", "Science Enrolled"]].sum().reset_index()
+        fig = px.line(overall_trends_3, x="Year", y=["Engineering Enrolled", "Business Enrolled", "Arts Enrolled", "Science Enrolled"],
                     markers=True, title="Enrollment by Department")
         # Fix Year axis formatting
         fig.update_layout(xaxis=dict(tickmode="linear", tick0=overall_trends["Year"].min(), dtick=1))
