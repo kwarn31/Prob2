@@ -118,20 +118,20 @@ elif page == "Overall":
         fig = px.line(overall_trends_1, x="Year", y=["Applications", "Admitted", "Enrolled"],
                     markers=True, title="Enrollment Trends Over Time")
         # Fix Year axis formatting
-        fig.update_layout(xaxis=dict(tickmode="linear", tick0=overall_trends["Year"].min(), dtick=1))
+        fig.update_layout(xaxis=dict(tickmode="linear", tick0=overall_trends_1["Year"].min(), dtick=1))
         st.plotly_chart(fig)
     
         # Plot 2
         overall_trends_2 = unique_years_df.groupby("Year")[["Student Satisfaction (%)", "Retention Rate (%)"]].sum().reset_index()
         fig = px.line(overall_trends_2, x="Year", y=["Student Satisfaction (%)", "Retention Rate (%)"],
                     markers=True, title="Satisfaction and Retention over Time")
-        fig.update_layout(xaxis=dict(tickmode="linear", tick0=overall_trends["Year"].min(), dtick=1))
+        fig.update_layout(xaxis=dict(tickmode="linear", tick0=overall_trends_2["Year"].min(), dtick=1))
         st.plotly_chart(fig)
 
         # Plot 3 
         overall_trends_3 = unique_years_df.groupby("Year")[["Engineering Enrolled", "Business Enrolled", "Arts Enrolled", "Science Enrolled"]].sum().reset_index()
         fig = px.line(overall_trends_3, x="Year", y=["Engineering Enrolled", "Business Enrolled", "Arts Enrolled", "Science Enrolled"],
                     markers=True, title="Enrollment by Department")
-        fig.update_layout(xaxis=dict(tickmode="linear", tick0=overall_trends["Year"].min(), dtick=1))
+        fig.update_layout(xaxis=dict(tickmode="linear", tick0=overall_trends_3["Year"].min(), dtick=1))
         st.plotly_chart(fig)
 
