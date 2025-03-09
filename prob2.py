@@ -10,7 +10,9 @@ st.title("University Dashboard")
 
 # Select Year with Slider
 selected_year = st.slider("Select Year:", int(df["Year"].min()), int(df["Year"].max()), int(df["Year"].min()))
-
+if term_filter != 'All':
+    filtered_data = filtered_data[filtered_data['Term'] == term_filter]
+    
 # KPIs 
 # Total applications, admissions, and enrollments per term
 # Retention rate trends over time
