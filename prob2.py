@@ -22,6 +22,14 @@ selected_year = st.slider("Select Year:", int(df["Year"].min()), int(df["Year"].
 # Filter Data by Selected Year
 filtered_data = df[df["Year"] == selected_year]
 
+
+# Sidebar Filter
+st.sidebar.header("Filters")
+term_filter = st.sidebar.selectbox("Select Term", ['All'] + list(df['Term'].unique()))
+if term_filter != 'All':
+    df = df[df['Term'] == term_filter]
+
+
 # Melt Data for Plotly
 data_melted = filtered_data.melt(id_vars=["Year", "Term"], 
                                  var_name="Field", value_name="Enrollment")
