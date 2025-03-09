@@ -112,21 +112,22 @@ elif page == "Overall":
         # Convert Year column to integer
         df["Year"] = unique_years_df["Year"].astype(int)
         overall_trends = unique_years_df.groupby("Year")[["Applications", "Admitted", "Enrolled"]].sum().reset_index()
-        cl1, cl2 = st.columns((2))
-        with cl1: 
-            fig = px.line(overall_trends, x="Year", y=["Applications", "Admitted", "Enrolled"],
-                      markers=True, title="Enrollment Trends Over Time")
-            # Fix Year axis formatting
-            fig.update_layout(xaxis=dict(tickmode="linear", tick0=overall_trends["Year"].min(), dtick=1))
-            st.plotly_chart(fig)
 
-        with cl2: 
-            overall_trends = unique_years_df.groupby("Year")[["Student Satisfaction (%)", "Retention Rate (%)"]].sum().reset_index()
-            fig = px.line(overall_trends, x="Year", y=["Student Satisfaction (%)", "Retention Rate (%)"],
-                      markers=True, title="Satisfaction and Retention over Time")
-            # Fix Year axis formatting
-            fig.update_layout(xaxis=dict(tickmode="linear", tick0=overall_trends["Year"].min(), dtick=1))
-            st.plotly_chart(fig)
+
+        # Plot 1 
+        fig = px.line(overall_trends, x="Year", y=["Applications", "Admitted", "Enrolled"],
+                    markers=True, title="Enrollment Trends Over Time")
+        # Fix Year axis formatting
+        fig.update_layout(xaxis=dict(tickmode="linear", tick0=overall_trends["Year"].min(), dtick=1))
+        st.plotly_chart(fig)
+    
+        # Plot 2
+        overall_trends = unique_years_df.groupby("Year")[["Student Satisfaction (%)", "Retention Rate (%)"]].sum().reset_index()
+        fig = px.line(overall_trends, x="Year", y=["Student Satisfaction (%)", "Retention Rate (%)"],
+                    markers=True, title="Satisfaction and Retention over Time")
+        # Fix Year axis formatting
+        fig.update_layout(xaxis=dict(tickmode="linear", tick0=overall_trends["Year"].min(), dtick=1))
+        st.plotly_chart(fig)
 
 # Department Comparison Page
 elif page == "Department Comparison":
