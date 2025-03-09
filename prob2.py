@@ -107,7 +107,7 @@ elif page == "Overall":
 
     # Chart
         st.subheader("Enrollment over Time")
-        st.line_chart(df[['Year', 'Applications']]
+        st.line_chart(df[['Year', 'Applications']])
 
 # Department Comparison Page
 elif page == "Department Comparison":
