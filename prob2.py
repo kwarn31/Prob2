@@ -14,7 +14,7 @@ page = st.sidebar.radio("Go to", ["Home", "Overall", "Department Comparison"])
 # Home Page
 if page == "Home":
     st.title("🏛️ University Dashboard")
-    st.write("Welcome to the University Dashboard! Use the sidebar to navigate between different sections.")
+    st.write("Welcome to the University Dashboard! ")
 
     # Title of the app
     st.title("Yearly Dashboard")
