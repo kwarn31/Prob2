@@ -104,10 +104,13 @@ if page == "Home":
 # Overall Page
 elif page == "Overall":
         st.title("📊 Overall Overview")
+        # the data seems to be the same for the spring and the fall for many of the columns... 
+        # going to keep only the fall values for these charts because I think I will be doubling the numbers otherwise 
+        unique_years_df = df.drop_duplicates(subset="Year", keep="first")
     
         # Convert Year column to integer
-        df["Year"] = df["Year"].astype(int)
-        overall_trends = df.groupby("Year")[["Applications", "Admitted", "Enrolled"]].reset_index()
+        df["Year"] = unique_years_df["Year"].astype(int)
+        overall_trends = unique_years_df.groupby("Year")[["Applications", "Admitted", "Enrolled"]].sum().reset_index()
         fig = px.line(overall_trends, x="Year", y=["Applications", "Admitted", "Enrolled"],
                       markers=True, title="Enrollment Trends Over Time")
         # Fix Year axis formatting
@@ -115,7 +118,7 @@ elif page == "Overall":
         st.plotly_chart(fig)
 
         # Chart
-        overall_trends = df.groupby("Year")[["Student Satisfaction (%)", "Retention Rate (%)"]].sum().reset_index()
+        overall_trends = unique_years_df.groupby("Year")[["Student Satisfaction (%)", "Retention Rate (%)"]].sum().reset_index()
         fig = px.line(overall_trends, x="Year", y=["Student Satisfaction (%)", "Retention Rate (%)"],
                       markers=True, title="Satisfaction and Retention over Time")
         # Fix Year axis formatting
