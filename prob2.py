@@ -101,6 +101,20 @@ if page == "Home":
     st.title("Enrollment Trends by Field")
     st.plotly_chart(fig)
 
+    # Create Pie Chart of Departments 
+
+    # Select columns for the Pie Chart
+    selected_columns = ["Engineering Enrolled", "Business Enrolled", "Arts Enrolled", "Science Enrolled"]    
+    data_melted = filtered_data.melt(id_vars=["Year", "Term"], value_vars=selected_columns,
+                                 var_name="Department", value_name="Enrollment")
+    fig = px.pie(data_melted, x="Term", y="Enrollment", color="Field", 
+                 barmode="group", title=f"Enrollment by Department for {selected_year}")
+
+    # Display Chart
+    st.title("Enrollment Trends by Department")
+    st.plotly_chart(fig)
+
+
 # Overall Page
 elif page == "Overall":
       
