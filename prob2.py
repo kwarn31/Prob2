@@ -107,7 +107,9 @@ elif page == "Overall":
 
     # Chart
         st.subheader("Enrollment over Time")
-        st.line_chart(df[['Applications','Admitted','Enrolled']])
+        # Set 'Year' as index before plotting
+        overall_trends = df.set_index("Year")[["Applications", "Admitted", "Enrolled"]]
+        st.line_chart(overall_trends)
 
 # Department Comparison Page
 elif page == "Department Comparison":
