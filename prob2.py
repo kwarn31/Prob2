@@ -9,7 +9,7 @@ df = pd.read_csv("university_student_dashboard_data.csv")
 
 # Sidebar Navigation
 st.sidebar.title("Navigation")
-page = st.sidebar.radio("Go to", ["Home", "Overall", "Department Comparison"])
+page = st.sidebar.radio("Go to", ["Home", "Overall"])
 
 # Home Page
 if page == "Home":
@@ -111,24 +111,29 @@ elif page == "Overall":
     
         # Convert Year column to integer
         df["Year"] = unique_years_df["Year"].astype(int)
-        overall_trends = unique_years_df.groupby("Year")[["Applications", "Admitted", "Enrolled"]].sum().reset_index()
+        overall_trends_1 = unique_years_df.groupby("Year")[["Applications", "Admitted", "Enrolled"]].sum().reset_index()
 
 
         # Plot 1 
-        fig = px.line(overall_trends, x="Year", y=["Applications", "Admitted", "Enrolled"],
+        fig = px.line(overall_trends_1, x="Year", y=["Applications", "Admitted", "Enrolled"],
                     markers=True, title="Enrollment Trends Over Time")
         # Fix Year axis formatting
         fig.update_layout(xaxis=dict(tickmode="linear", tick0=overall_trends["Year"].min(), dtick=1))
         st.plotly_chart(fig)
     
         # Plot 2
-        overall_trends = unique_years_df.groupby("Year")[["Student Satisfaction (%)", "Retention Rate (%)"]].sum().reset_index()
-        fig = px.line(overall_trends, x="Year", y=["Student Satisfaction (%)", "Retention Rate (%)"],
+        overall_trends_2 = unique_years_df.groupby("Year")[["Student Satisfaction (%)", "Retention Rate (%)"]].sum().reset_index()
+        fig = px.line(overall_trends_2, x="Year", y=["Student Satisfaction (%)", "Retention Rate (%)"],
                     markers=True, title="Satisfaction and Retention over Time")
         # Fix Year axis formatting
         fig.update_layout(xaxis=dict(tickmode="linear", tick0=overall_trends["Year"].min(), dtick=1))
         st.plotly_chart(fig)
 
-# Department Comparison Page
-elif page == "Department Comparison":
-    st.title("Department Comparison")
+        # Plot 3 
+        overall_trends_3 = unique_years_df.groupby("Year")[["Engineering Enrolled", "Business Enrolled, "Arts Enrolled", "Science Enrolled"]].sum().reset_index()
+        fig = px.line(overall_trends_3, x="Year", y=["Engineering Enrolled", "Business Enrolled, "Arts Enrolled", "Science Enrolled"],
+                    markers=True, title="Enrollment by Department")
+        # Fix Year axis formatting
+        fig.update_layout(xaxis=dict(tickmode="linear", tick0=overall_trends["Year"].min(), dtick=1))
+        st.plotly_chart(fig)
+
