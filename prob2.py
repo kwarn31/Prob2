@@ -44,9 +44,9 @@ elif satisfaction < 85:
 else:
     color = "green"
 # Display metric with color
-st.metric("Student Satisfaction", f"{satisfaction:.1f} %")
+#st.metric("Student Satisfaction", f"{satisfaction:.1f} %")
 # Apply colored markdown for visualization
-#st.markdown(f"<h3 style='color:{color};'>● {satisfaction:.1f}%</h3>", unsafe_allow_html=True)
+st.markdown(f"<h3 style='color:{color};'>● {satisfaction:.1f}%</h3>", unsafe_allow_html=True)
 
 
 # Melt Data for Plotly
