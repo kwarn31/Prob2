@@ -19,11 +19,11 @@ if term_filter != 'All':
     df = df[df['Term'] == term_filter]
     
 # KPIs 
-# Total applications, admissions, and enrollments per term
+# Total applications, admissions, and enrollments per term DONE
 # Retention rate trends over time  DONE
 # Student satisfaction scores over the years DONE
 # Enrollment breakdown by department (Engineering, Business, Arts, Science)
-# Comparison between Spring vs. Fall term trends.
+# Comparison between Spring vs. Fall term trends. DONE
 # Compare trends between departments, retention rates, and satisfaction levels.
 
 # Filter Data by Selected Year and Term 
