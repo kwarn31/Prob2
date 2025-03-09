@@ -104,14 +104,6 @@ if page == "Home":
 # Overall Page
 elif page == "Overall":
         st.title("📊 Overall Overview")
-
-        # Chart
-        st.subheader("Enrollment over Time")
-        # Convert Year column to integers to avoid decimals
-        df["Year"] = df["Year"].astype(int)
-        overall_trends = df.set_index("Year")[["Applications", "Admitted", "Enrolled"]]
-        st.line_chart(overall_trends)
-
     
         # Convert Year column to integer
         df["Year"] = df["Year"].astype(int)
@@ -123,11 +115,12 @@ elif page == "Overall":
         st.plotly_chart(fig)
 
         # Chart
-        st.subheader("Satisfaction and Retention over Time")
-        # Convert Year column to integers to avoid decimals
-        df["Year"] = df["Year"].astype(int)
-        overall_trends = df.set_index("Year")[["Student Satisfaction (%)", "Retention Rate (%)"]]
-        st.line_chart(overall_trends)
+       overall_trends = df.groupby("Year")[["Student Satisfaction (%)", "Retention Rate (%)"]].sum().reset_index()
+        fig = px.line(overall_trends, x="Year", y=["Student Satisfaction (%)", "Retention Rate (%)"],
+                      markers=True, title="Satisfaction and Retention over Time")
+        # Fix Year axis formatting
+        fig.update_layout(xaxis=dict(tickmode="linear", tick0=overall_trends["Year"].min(), dtick=1))
+        st.plotly_chart(fig)
 
 # Department Comparison Page
 elif page == "Department Comparison":
