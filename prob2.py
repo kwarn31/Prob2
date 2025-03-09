@@ -32,19 +32,33 @@ if term_filter != 'All':
     filtered_data = filtered_data[filtered_data['Term'] == term_filter]
 
 # KPIs
+cl1, cl2 = st.columns((2))
+with cl1: 
+    # Retention Rate 
+    st.title("Retention Rate (%)")
+    retention = filtered_data["Retention Rate (%)"].values[0]
+    # Determine color based on satisfaction level
+    if retention < 80:
+        color = "red"
+    elif retention < 85:
+        color = "orange"
+    else:
+        color = "green"
+    st.markdown(f"<h3 style='color:{color};'>● {retention:.1f}%</h3>", unsafe_allow_html=True)
+with cl2: 
+    # Student Satisfaction 
+    st.title("Student Satisfaction (%)")
+    satisfaction = filtered_data["Student Satisfaction (%)"].values[0]
+    # Determine color based on satisfaction level
+    if satisfaction < 80:
+        color = "red"
+    elif satisfaction < 85:
+        color = "orange"
+    else:
+        color = "green"
+    # with color
+    st.markdown(f"<h3 style='color:{color};'>● {satisfaction:.1f}%</h3>", unsafe_allow_html=True)
 
-# Student Satisfaction 
-st.title("Student Satisfaction (%)")
-satisfaction = filtered_data["Student Satisfaction (%)"].values[0]
-# Determine color based on satisfaction level
-if satisfaction < 80:
-    color = "red"
-elif satisfaction < 85:
-    color = "orange"
-else:
-    color = "green"
-# with color
-st.markdown(f"<h3 style='color:{color};'>● {satisfaction:.1f}%</h3>", unsafe_allow_html=True)
 
 
 # Melt Data for Plotly
