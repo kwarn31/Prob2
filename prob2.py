@@ -99,8 +99,7 @@ if page == "Home":
                                  var_name="Department", value_name="Enrollment")
 
     # Create Pie Chart (Fix: Use 'names' and 'values')
-    fig = px.pie(data_melted, names="Department", values="Enrollment", 
-             title=f"Enrollment by Department for {selected_year}")
+    fig = px.pie(data_melted, names="Department", values="Enrollment")
 
     # Display Chart
     st.title("Enrollment Trends by Department")
