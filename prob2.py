@@ -17,7 +17,7 @@ if page == "Home":
     st.write("Welcome to the University Dashboard! Use the sidebar to navigate between different sections.")
 
     # Title of the app
-    st.title("University Dashboard")
+    st.title("Yearly Dashboard")
 
     # Select Year with Slider
     selected_year = st.slider("Select Year:", int(df["Year"].min()), int(df["Year"].max()), int(df["Year"].min()))
@@ -104,6 +104,10 @@ if page == "Home":
 # Overall Page
 elif page == "Overall":
         st.title("📊 Overall Overview")
+
+    # Chart
+    st.subheader("")
+    st.line_chart(df[['Employee', 'Hours Worked']].set_index('Employee'))
 
 # Department Comparison Page
 elif page == "Department Comparison":
