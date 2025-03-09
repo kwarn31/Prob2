@@ -112,6 +112,13 @@ elif page == "Overall":
         overall_trends = df.set_index("Year")[["Applications", "Admitted", "Enrolled"]]
         st.line_chart(overall_trends)
 
+    # Chart
+        st.subheader("Satisfaction and Retention over Time")
+        # Convert Year column to integers to avoid decimals
+        df["Year"] = df["Year"].astype(int)
+        overall_trends = df.set_index("Year")[["Student Satisfaction (%)", "Retention Rate (%)"]]
+        st.line_chart(overall_trends)
+
 # Department Comparison Page
 elif page == "Department Comparison":
     st.title("Department Comparison")
