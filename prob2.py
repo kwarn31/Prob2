@@ -20,8 +20,8 @@ if term_filter != 'All':
     
 # KPIs 
 # Total applications, admissions, and enrollments per term
-# Retention rate trends over time
-# Student satisfaction scores over the years
+# Retention rate trends over time  DONE
+# Student satisfaction scores over the years DONE
 # Enrollment breakdown by department (Engineering, Business, Arts, Science)
 # Comparison between Spring vs. Fall term trends.
 # Compare trends between departments, retention rates, and satisfaction levels.
@@ -58,6 +58,20 @@ with cl2:
         color = "green"
     # with color
     st.markdown(f"<h3 style='color:{color};'>● {satisfaction:.1f}%</h3>", unsafe_allow_html=True)
+
+# Melt Data for Plotly
+data_melted = filtered_data.melt(id_vars=["Term"], 
+                                 value_vars=["Applications", "Admitted", "Enrolled"], 
+                                 var_name="Stage", value_name="Count")
+
+# Create Grouped Bar Chart
+fig = px.bar(data_melted, x="Term", y="Count", color="Stage", 
+             barmode="group", title=f"Applications, Admissions & Enrollments in {selected_year}")
+
+# Display in Streamlit
+st.title("University Admissions Overview")
+st.plotly_chart(fig)
+
 
 
 
