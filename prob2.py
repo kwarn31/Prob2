@@ -3,6 +3,8 @@ import streamlit as st
 import pandas as pd 
 import plotly.express as px 
 
+df = pd.read_csv("university_student_dashboard_data.csv")
+
 # Title of the app
 st.title("University Dashboard")
 
