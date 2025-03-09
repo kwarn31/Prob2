@@ -105,10 +105,14 @@ if page == "Home":
 
     # Select columns for the Pie Chart
     selected_columns = ["Engineering Enrolled", "Business Enrolled", "Arts Enrolled", "Science Enrolled"]    
+
+    # Melt Data for Plotly
     data_melted = filtered_data.melt(id_vars=["Year", "Term"], value_vars=selected_columns,
                                  var_name="Department", value_name="Enrollment")
-    fig = px.pie(data_melted, x="Term", y="Enrollment", color="Department", 
-                 barmode="group", title=f"Enrollment by Department for {selected_year}")
+
+    # Create Pie Chart (Fix: Use 'names' and 'values')
+    fig = px.pie(data_melted, names="Department", values="Enrollment", 
+             title=f"Enrollment by Department for {selected_year}")
 
     # Display Chart
     st.title("Enrollment Trends by Department")
