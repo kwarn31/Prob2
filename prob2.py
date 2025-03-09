@@ -107,7 +107,8 @@ elif page == "Overall":
 
     # Chart
         st.subheader("Enrollment over Time")
-        # Set 'Year' as index before plotting
+        # Convert Year column to integers to avoid decimals
+        df["Year"] = df["Year"].astype(int)
         overall_trends = df.set_index("Year")[["Applications", "Admitted", "Enrolled"]]
         st.line_chart(overall_trends)
 
