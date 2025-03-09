@@ -106,8 +106,8 @@ elif page == "Overall":
         st.title("📊 Overall Overview")
 
     # Chart
-    st.subheader("")
-    st.line_chart(df[['Employee', 'Hours Worked']].set_index('Employee'))
+        st.subheader("Enrollment over Time")
+        st.line_chart(df[['Year', 'Applications']]
 
 # Department Comparison Page
 elif page == "Department Comparison":
