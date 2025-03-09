@@ -89,18 +89,6 @@ if page == "Home":
     st.plotly_chart(fig)
 
 
-    # Melt Data for Plotly
-    data_melted = filtered_data.melt(id_vars=["Year", "Term"], 
-                                 var_name="Field", value_name="Enrollment")
-
-    # Create Grouped Bar Chart
-    fig = px.bar(data_melted, x="Term", y="Enrollment", color="Field", 
-                 barmode="group", title=f"Enrollment by Field for {selected_year}")
-
-    # Display Chart
-    st.title("Enrollment Trends by Field")
-    st.plotly_chart(fig)
-
     # Create Pie Chart of Departments 
 
     # Select columns for the Pie Chart
