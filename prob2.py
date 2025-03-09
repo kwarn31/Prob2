@@ -1,5 +1,7 @@
 # Now let's build the dashboard!
-
+import streamlit as st
+import pandas as pd 
+import plotly.express as px 
 
 # Title of the app
 st.title("University Dashboard")
