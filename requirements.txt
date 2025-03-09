@@ -1,2 +1,4 @@
 # requirements for streamlit 
 streamlit 
+pandas 
+plotly
