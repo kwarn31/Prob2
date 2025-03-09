@@ -107,7 +107,7 @@ if page == "Home":
     selected_columns = ["Engineering Enrolled", "Business Enrolled", "Arts Enrolled", "Science Enrolled"]    
     data_melted = filtered_data.melt(id_vars=["Year", "Term"], value_vars=selected_columns,
                                  var_name="Department", value_name="Enrollment")
-    fig = px.pie(data_melted, x="Term", y="Enrollment", color="Field", 
+    fig = px.pie(data_melted, x="Term", y="Enrollment", color="Department", 
                  barmode="group", title=f"Enrollment by Department for {selected_year}")
 
     # Display Chart
