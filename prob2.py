@@ -107,7 +107,7 @@ elif page == "Overall":
     
         # Convert Year column to integer
         df["Year"] = df["Year"].astype(int)
-        overall_trends = df.groupby("Year")[["Applications", "Admitted", "Enrolled"]].sum().reset_index()
+        overall_trends = df.groupby("Year")[["Applications", "Admitted", "Enrolled"]].reset_index()
         fig = px.line(overall_trends, x="Year", y=["Applications", "Admitted", "Enrolled"],
                       markers=True, title="Enrollment Trends Over Time")
         # Fix Year axis formatting
