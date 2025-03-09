@@ -64,15 +64,19 @@ data_melted = filtered_data.melt(id_vars=["Term"],
                                  value_vars=["Applications", "Admitted", "Enrolled"], 
                                  var_name="Stage", value_name="Count")
 
+# Adjust x-axis based on term selection
+if term_filter == "All":
+    x_axis = "Term"  # Show term-wise bars when all terms are selected
+else:
+    x_axis = "Stage"  # Show stage-wise bars when a single term is selected
+
 # Create Grouped Bar Chart
-fig = px.bar(data_melted, x="Term", y="Count", color="Stage", 
-             barmode="group", title=f"Applications, Admissions & Enrollments in {selected_year}")
+fig = px.bar(data_melted, x=x_axis, y="Count", color="Stage", 
+             barmode="group", title=f"Applications, Admissions & Enrollments in {selected_year} ({term_filter})")
 
 # Display in Streamlit
 st.title("University Admissions Overview")
 st.plotly_chart(fig)
-
-
 
 
 # Melt Data for Plotly
